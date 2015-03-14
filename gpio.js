@@ -1,3 +1,19 @@
+/*
+
+The MIT License (MIT)
+=====================
+
+Copyright (c) 2015 Luis Montes
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+*/
+
+var serialport = require('serialport');
 var createNodebotNode = require('./lib/nodebotNode');
 
 function connectingStatus(n){
@@ -9,7 +25,6 @@ function networkReadyStatus(n){
 }
 
 function networkErrorStatus(n){
-  console.log('networkErrorStatus');
   n.status({fill:"red",shape:"dot",text:"disconnected"});
 }
 
@@ -34,9 +49,7 @@ function init(RED) {
     this.state = n.state;
     this.nodebot = RED.nodes.getNode(n.board);
     if (typeof this.nodebot === "object") {
-      console.log('gpionode start');
-
-      //this.repeat = this.nodebot.repeat;
+      
       var node = this;
       connectingStatus(node);
 
@@ -127,7 +140,6 @@ function init(RED) {
                   var i2cAddress = parseInt(msg.i2cAddress, 10) || parseInt(node.i2cAddress, 10);
                   var numBytes = parseInt(msg.payload, 10);
                   if(io.i2cReadOnce && i2cAddress && numBytes){
-                    console.log('i2cReadOnce', i2cAddress, register, numBytes);
                     if(register){
                       io.i2cReadOnce(i2cAddress, register, numBytes, function(data){
                         node.send({
@@ -152,7 +164,6 @@ function init(RED) {
                   var register = parseInt(msg.i2cRegister, 10) || parseInt(node.i2cRegister, 10);
                   var i2cAddress = parseInt(msg.i2cAddress, 10) || parseInt(node.i2cAddress, 10);
                   if(io.i2cWrite && i2cAddress && msg.payload){
-                    console.log('i2cWrite', i2cAddress, register, msg.payload);
                     if(register){
                       io.i2cWrite(i2cAddress, register, msg.payload);
                     }else{
@@ -162,7 +173,6 @@ function init(RED) {
                 }
                 else if(node.state === 'I2C_DELAY'){
                   if(io.i2cConfig){
-                    console.log('i2cConfig', msg.payload);
                     if(register){
                       io.i2cConfig(parseInt(msg.payload, 10));
                     }
