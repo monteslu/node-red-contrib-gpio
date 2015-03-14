@@ -111,7 +111,7 @@ function init(RED) {
                 var state = msg.state || node.state;
                 var io = node.nodebot.io;
                 if (state === 'OUTPUT') {
-                  try{io.pinMode(node.pin, node.state);}catch(exp){ console.log(exp); }
+                  try{io.pinMode(node.pin, io.MODES[state]);}catch(exp){ console.log(exp); }
                   if ((msg.payload == true)||(msg.payload == 1)||(msg.payload.toString().toLowerCase() === "on")) {
                       io.digitalWrite(node.pin, 1);
                   }
@@ -120,7 +120,7 @@ function init(RED) {
                   }
                 }
                 else if (state === 'PWM') {
-                  try{io.pinMode(node.pin, node.state);}catch(exp){ console.log(exp); }
+                  try{io.pinMode(node.pin, io.MODES[state]);}catch(exp){ console.log(exp); }
                   msg.payload = msg.payload * 1;
                   if ((msg.payload >= 0) && (msg.payload <= 255)) {
                       //console.log(msg.payload, node.pin);
@@ -128,7 +128,7 @@ function init(RED) {
                   }
                 }
                 else if (state === 'SERVO') {
-                  try{io.pinMode(node.pin, node.state);}catch(exp){ console.log(exp); }
+                  try{io.pinMode(node.pin, io.MODES[state]);}catch(exp){ console.log(exp); }
                   msg.payload = msg.payload * 1;
                   if ((msg.payload >= 0) && (msg.payload <= 180)) {
                       //console.log(msg.payload, node.pin);
