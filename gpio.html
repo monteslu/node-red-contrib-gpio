@@ -38,7 +38,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 </script>
 
 <script type="text/x-red" data-help-name="gpio in">
-  <p>gpio input node. An input node for receiving data from General Purpose Input and Outputs (GPIOs) pins though the use of johnny-five I/O Plugins</p>
+  <p>gpio input node. A node for receiving data from General Purpose Input and Outputs (GPIOs) pins though the use of johnny-five I/O Plugins</p>
 </script>
 
 <script type="text/javascript">
@@ -50,7 +50,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
       state: {value:"INPUT",required:true},
       samplingInterval: {value:"300",required:false},
       pin: {value:"",required:false},
-      i2cAddress: {value:"",required:false},
       board: {type:"nodebot", required:true}
     },
     color:"#f6de1d",
@@ -58,7 +57,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     outputs:1,
     icon: "gpiowhite.png",
     label: function() {
-      return this.name||this.topic||"gpio";
+      return this.name||"gpio"+this.pin;
     },
     oneditprepare: function() {
 
@@ -129,7 +128,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 </script>
 
 <script type="text/x-red" data-help-name="gpio out">
-  <p>gpio output node. An input node for sending data to General Purpose Input and Outputs (GPIOs) pins though the use of johnny-five I/O Plugins</p>
+  <p>gpio output node. A node for sending data to General Purpose Input and Outputs (GPIOs) pins though the use of johnny-five I/O Plugins</p>
 </script>
 
 <script type="text/javascript">
@@ -151,7 +150,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     icon: "gpiowhite.png",
     align: "right",
     label: function() {
-      return this.name||"gpio";
+      console.log('name', "gpio"+(this.pin || this.i2cAddress || ''));
+      return this.name||"gpio"+(this.pin || this.i2cAddress || '');
     },
     oneditprepare: function() {
 
@@ -206,7 +206,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 <script type="text/x-red" data-template-name="nodebot">
   <div class="form-row">
-    <label for="node-config-input-boardType"><i class="fa fa-wrench"></i> Nodebot</label>
+    <label for="node-config-input-boardType"><i class="fa fa-gears"></i> Nodebot</label>
     <select type="text" id="node-config-input-boardType" style="width: 200px;">
         <option value="firmata">Arduino/Firmata</option>
         <option value="raspi-io">Raspberry Pi</option>
@@ -220,7 +220,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   </div>
   <div class="form-row" id="node-div-firmataRow">
     <div class="form-row" id="node-div-connectionTypeRow">
-      <label for="node-config-input-connectionType"><i class="fa fa-wrench"></i>Connection</label>
+      <label for="node-config-input-connectionType"><i class="fa fa-wrench"></i> Connection</label>
       <select type="text" id="node-config-input-connectionType" style="width: 200px;">
           <option value="local">Local Serial Port</option>
           <option value="tcp">TCP Socket</option>
