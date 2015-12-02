@@ -216,11 +216,18 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 <script type="text/x-red" data-help-name="johnny5">
     <p>A function block where you can write code using the amazing <a target="_new" href="http://johnny-five.io">johnny-five</a> robotics library.</p>
     <p>The function you write is what happens once the specified johnny-five board emits a 'ready' event.</p>
-    <p>Your script executes ONCE on deployment, NOT each time a message comes.</p>
+    <p>Your script executes <strong>ONCE</strong> on deployment, <strong>NOT</strong> each time a message comes.</p>
+
+    <strong>Using johnny-five components</strong>
+    <p>The "board" and "five" variables are avaiable for use when creating johnny-five component instances such as:
+      <p><code>var led = new five.Led({pin: 13, board: board});</code></p>
+    </p>
+
     <strong>Handling inputs and outputs</strong>
     <p>You handle input and output messages to the node in your code with:
       <p> <code>node.on("input", function(msg){ ... })</code> and <code>node.send({topic: "myTopic", payload: "myPayload"})</code></p>
     </p>
+
     <strong>Using other modules</strong>
     <p>You have node require available to your scritps to do things such as:
       <p> <code>var _ = require("lodash");</code></p>
