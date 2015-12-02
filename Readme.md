@@ -1,7 +1,7 @@
 node-red-contrib-gpio
 ========================
 
-A set of input and output nodes for controlling General Purpose Input and Outputs (GPIOs) though the use of [johnny-five](https://github.com/rwaldron/johnny-five) [I/O Plugins](https://github.com/rwaldron/johnny-five/wiki/IO-Plugins)
+A set of input and output nodes for controlling General Purpose Input and Outputs (GPIOs) though the use of [johnny-five](https://github.com/rwaldron/johnny-five) [I/O Plugins](https://github.com/rwaldron/johnny-five/wiki/IO-Plugins) as well as running johnny-five scripts!
 
 ## Install via NPM
 
@@ -18,6 +18,10 @@ npm install node-red-contrib-gpio
 
 ![i2c](i2c.png)
 
+## Now with full Johnny-five support!
+
+![j5node](j5node.png)
+
 ## Supported Hardware
 
 node-red-contrib-gpio supports several johnny-five I/O classes:
@@ -31,7 +35,7 @@ node-red-contrib-gpio supports several johnny-five I/O classes:
 |Blend Micro|[blend-micro-io](https://github.com/noopkat/blend-micro-io)|
 |LightBlue Bean|[bean-io](https://github.com/monteslu/bean-io/)|
 |Electirc Imp|[imp-io](https://github.com/rwaldron/imp-io/)|
-|Spark Core|[spark-io](https://github.com/rwaldron/spark-io/)|
+|Particle(Spark) Core|[particle-io](https://github.com/rwaldron/particle-io/)|
 
 
 Arduino is supported out of the box, but for other devices, you'll need to install their IO plugin.
