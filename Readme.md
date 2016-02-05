@@ -31,6 +31,7 @@ node-red-contrib-gpio supports several johnny-five I/O classes:
 |Arduino/Firmata|[firmata](https://github.com/jgautier/firmata)|
 |Raspberry Pi|[raspi-io](https://github.com/bryan-m-hughes/raspi-io)|
 |BeagleBone Black|[beaglebone-io](https://github.com/julianduque/beaglebone-io)|
+|C.H.I.P.|[chip-io](https://github.com/sandeepmistry/node-chip-io)|
 |Galileo/Edison|[galileo-io](https://github.com/rwaldron/galileo-io/)|
 |Blend Micro|[blend-micro-io](https://github.com/noopkat/blend-micro-io)|
 |LightBlue Bean|[bean-io](https://github.com/monteslu/bean-io/)|
