@@ -15,8 +15,16 @@ npm install node-red-contrib-gpio
 ![input output](in_out.png)
 
 ## Also Read and Write to i2c devices
-
 ![i2c](i2c.png)
+
+Node configuration
+* 14 is the length of bytes to read (1 byte = 8 bits)
+* i2c bytes is an array of bytes. You can't use inject node directly because data has to be inside an array.
+```
+msg.payload=[0x00]
+return msg;
+```
+* i2c read and i2c write configure i2c connection. I2c and register are decimal values! parseInt(x, 10) function is used to read values.
 
 ## Now with full Johnny-five support!
 
