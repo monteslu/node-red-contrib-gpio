@@ -1,6 +1,8 @@
 node-red-contrib-gpio
 ========================
 
+[![Join the chat at https://gitter.im/monteslu/node-red-contrib-gpio](https://badges.gitter.im/monteslu/node-red-contrib-gpio.svg)](https://gitter.im/monteslu/node-red-contrib-gpio?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 A set of input and output nodes for controlling General Purpose Input and Outputs (GPIOs) though the use of [johnny-five](https://github.com/rwaldron/johnny-five) [I/O Plugins](https://github.com/rwaldron/johnny-five/wiki/IO-Plugins) as well as running johnny-five scripts!
 
 ## Install via NPM
