@@ -101,7 +101,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
       <label for="node-config-input-connectionType"><i class="fa fa-wrench"></i> Connection</label>
       <select type="text" id="node-config-input-connectionType" style="width: 200px;">
           <option value="local">Local Serial Port</option>
-          <option value="tcp">TCP Socket</option>
+          <option value="tcp">TCP Connect to</option>
+          <option value="tcplisten">TCP Listen on</option>
           <option value="udp">UDP broadcast</option>
           <option value="socketio">socket.io</option>
           <option value="mqtt">MQTT</option>
@@ -420,6 +421,7 @@ RED.nodes.registerType('gpio in',{
         meshblu: ['meshbluServer', 'uuid', 'token', 'sendUuid'],
         socketio: ['socketServer', 'pub', 'sub'],
         tcp: ['tcpHost', 'tcpPort'],
+        tcplisten: ['tcpPort'],
         udp: ['tcpHost', 'tcpPort']
       };
 

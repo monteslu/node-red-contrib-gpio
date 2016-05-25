@@ -22,7 +22,7 @@ var util = require('util');
 var _ = require('lodash');
 
 function connectingStatus(n){
-  n.status({fill:"red",shape:"ring",text:"connecting"});
+  n.status({fill:"red",shape:"ring",text:"connecting ... "});
 }
 
 function networkReadyStatus(n){
@@ -39,7 +39,7 @@ function ioErrorStatus(n, err){
 }
 
 function connectedStatus(n){
-  n.status({fill:"green",shape:"dot",text:"connected"});
+  n.status({fill:"green",shape:"dot",text:"connected !!!! "});
 }
 
 
@@ -109,8 +109,9 @@ function init(RED) {
         connectingStatus(node);
 
         node.nodebot.on('ioready', function() {
-            connectedStatus(node);
 
+            connectedStatus(node);
+            
             node.on('input', function(msg) {
               try{
                 var state = msg.state || node.state;
@@ -251,7 +252,6 @@ function init(RED) {
         node.nodebot.on('ioready', function() {
           // console.log('launching johnny5Node ioready', n);
             connectedStatus(node);
-
 
             function sendResults(node,msgs) {
                 var _msgid = (1 + Math.random() * 4294967295).toString(16);
