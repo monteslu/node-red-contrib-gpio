@@ -19,6 +19,7 @@ var createNodebotNode = require('./lib/nodebotNode');
 var five = require('johnny-five');
 var vm = require('vm');
 var util = require('util');
+var NodeLed = require('node-led');
 var _ = require('lodash');
 
 function connectingStatus(n){
@@ -111,7 +112,7 @@ function init(RED) {
         node.nodebot.on('ioready', function() {
 
             connectedStatus(node);
-            
+
             node.on('input', function(msg) {
               try{
                 var state = msg.state || node.state;
@@ -207,6 +208,56 @@ function init(RED) {
   }
 
   RED.nodes.registerType("gpio out",gpioOutNode);
+
+
+  function nodeLedNode(n) {
+    RED.nodes.createNode(this,n);
+    this.buttonState = -1;
+    this.address = Number(n.address);
+    this.mode = n.mode;
+    this.arduino = n.arduino;
+    this.nodebot = RED.nodes.getNode(n.board);
+    if (typeof this.nodebot === "object") {
+        var node = this;
+        connectingStatus(node);
+
+        node.nodebot.on('ioready', function() {
+            node.comp =  new NodeLed[node.mode](node.nodebot.io, {address: node.address});
+            connectedStatus(node);
+
+            node.on('input', function(msg) {
+              try{
+
+                if(node.mode === 'AlphaNum4' || node.mode === 'SevenSegment'){
+                  node.comp.writeText(msg.payload);
+                }
+                else{
+                  node.comp.drawBitmap(msg.payload);
+                }
+              }
+              catch(inputExp){
+                node.warn(inputExp);
+              }
+            });
+        });
+        node.nodebot.on('networkReady', function(){
+          networkReadyStatus(node);
+        });
+        node.nodebot.on('networkError', function(){
+          networkErrorStatus(node);
+        });
+        node.nodebot.on('ioError', function(err){
+          ioErrorStatus(node, err);
+        });
+    }
+    else {
+        this.warn("nodebot not configured");
+    }
+
+  }
+
+  RED.nodes.registerType("node-led",nodeLedNode);
+
 
   function handleRoute(req, res, handler){
     handler(req.query)

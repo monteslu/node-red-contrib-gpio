@@ -80,6 +80,35 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   <p>gpio output node. A node for sending data to General Purpose Input and Outputs (GPIOs) pins though the use of johnny-five I/O Plugins</p>
 </script>
 
+
+<script type="text/x-red" data-template-name="node-led">
+    <div class="form-row">
+        <label for="node-input-board"><i class="fa fa-tasks"></i> Board</label>
+        <input type="text" id="node-input-board">
+    </div>
+    <div class="form-row">
+        <label for="node-input-mode"><i class="fa fa-wrench"></i> Type</label>
+        <select type="text" id="node-input-mode" style="width: 200px;">
+            <option value="AlphaNum4">AlphaNum4</option>
+            <option value="SevenSegment">SevenSegment</option>
+            <option value="Matrix8x16">Matrix8x16</option>
+            <option value="Matrix8x8">Matrix8x8</option>
+        </select>
+    </div>
+    <div class="form-row" id="node-div-addressRow">
+        <label for="node-input-address"><i class="fa fa-circle"></i> I2C Address</label>
+        <input type="text" id="node-input-address" placeholder="112">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="node-led">
+  <p>Node-led output node using the excellent <a href="https://github.com/louiemontes/node-led" target="_blank">louiemontes/node-led</a> library for <a href="https://learn.adafruit.com/adafruit-led-backpack/overview" target="_blank">Adafruit LED Backpacks</a>. </p>
+</script>
+
 <script type="text/x-red" data-template-name="nodebot">
   <div class="form-row">
     <label for="node-config-input-boardType"><i class="fa fa-gears"></i> Nodebot</label>
@@ -89,6 +118,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         <option value="beaglebone-io">BeagleBone Black</option>
         <option value="galileo-io">Galileo/Edison</option>
         <option value="blend-micro-io">Blend Micro</option>
+        <option value="ble-io">ble-io</option>
         <option value="bean-io">LightBlue Bean</option>
         <option value="imp-io">Electirc Imp</option>
         <option value="particle-io">Particle(Spark) Core/Photon</option>
@@ -358,6 +388,26 @@ RED.nodes.registerType('gpio in',{
         this.outputs = 0;
       }
       console.log('saving', this, a, stateInput.val());
+    }
+  });
+
+
+  RED.nodes.registerType('node-led',{
+    category: 'output',
+    defaults: {
+      name: {value:""},
+      mode: {value:"AlphaNum4",required:true},
+      address: {value:"",required:true},
+      outputs: {value:0},
+      board: {type:"nodebot", required:true}
+    },
+    color:"#f6de1d",
+    inputs:1,
+    outputs:0,
+    icon: "gpiowhite.png",
+    align: "right",
+    label: function() {
+      return this.name||"node-led "+(this.address || '');
     }
   });
 
