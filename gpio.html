@@ -122,6 +122,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         <option value="bean-io">LightBlue Bean</option>
         <option value="imp-io">Electirc Imp</option>
         <option value="particle-io">Particle(Spark) Core/Photon</option>
+        <option value="playground-io">Circuit Playground(classic)</option>
         <option value="tinker-io">Particle/Tinker</option>
         <option value="chip-io">C.H.I.P.</option>
     </select>
@@ -134,9 +135,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
           <option value="tcp">TCP Connect to</option>
           <option value="tcplisten">TCP Listen on</option>
           <option value="udp">UDP broadcast</option>
-          <option value="socketio">socket.io</option>
           <option value="mqtt">MQTT</option>
-          <option value="meshblu">Meshblu (skynet)</option>
       </select>
     </div>
     <div class="form-row" id="node-div-serialRow">
@@ -159,10 +158,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     <div class="form-row" id="node-div-socketServerRow">
       <label for="node-config-input-socketServer"><i class="fa fa-globe"></i>Websocket Server</label>
       <input type="text" id="node-config-input-socketServer" placeholder="wss://my_socket_server">
-    </div>
-    <div class="form-row" id="node-div-meshbluServerRow">
-      <label for="node-config-input-meshbluServer"><i class="fa fa-globe"></i>Meshblu Server</label>
-      <input type="text" id="node-config-input-meshbluServer" placeholder="https://meshblu.octoblu.com">
     </div>
     <div class="form-row" id="node-div-uuidRow">
       <label for="node-config-input-uuid"><i class="fa fa-globe"></i>UUID</label>
@@ -432,7 +427,6 @@ RED.nodes.registerType('gpio in',{
       sparkToken: {value:"", required:false},
       beanId: {value:"", required:false},
       impId: {value:"", required:false},
-      meshbluServer: {value: "https://meshblu.octoblu.com", required:false},
       uuid: {value: "", required:false},
       token: {value: "", required:false},
       sendUuid: {value: "", required:false}
@@ -464,12 +458,10 @@ RED.nodes.registerType('gpio in',{
         });
       }
 
-      var firmataRows = ['serial', 'mqtt', 'socketServer', 'username', 'password', 'pub', 'sub', 'tcpHost', 'tcpPort', 'meshbluServer', 'uuid', 'token', 'sendUuid'];
+      var firmataRows = ['serial', 'mqtt', 'username', 'password', 'pub', 'sub', 'tcpHost', 'tcpPort', 'uuid', 'token', 'sendUuid'];
       var firmataToggles = {
         local: ['serial'],
         mqtt: ['mqtt', 'username', 'password', 'pub', 'sub'],
-        meshblu: ['meshbluServer', 'uuid', 'token', 'sendUuid'],
-        socketio: ['socketServer', 'pub', 'sub'],
         tcp: ['tcpHost', 'tcpPort'],
         tcplisten: ['tcpPort'],
         udp: ['tcpHost', 'tcpPort']
