@@ -402,6 +402,7 @@ function init(RED) {
                 _:_,
                 five: five,
                 board: node.nodebot.board,
+                boardModule: node.nodebot.boardModule,
                 RED: RED,
                 require: require
 
