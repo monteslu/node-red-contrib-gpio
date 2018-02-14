@@ -155,10 +155,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
       <label for="node-config-input-mqttServer"><i class="fa fa-globe"></i>MQTT Server</label>
       <input type="text" id="node-config-input-mqttServer" placeholder="mqtt://my_mqtt_server:1883">
     </div>
-    <div class="form-row" id="node-div-socketServerRow">
-      <label for="node-config-input-socketServer"><i class="fa fa-globe"></i>Websocket Server</label>
-      <input type="text" id="node-config-input-socketServer" placeholder="wss://my_socket_server">
-    </div>
     <div class="form-row" id="node-div-uuidRow">
       <label for="node-config-input-uuid"><i class="fa fa-globe"></i>UUID</label>
       <input type="text" id="node-config-input-uuid" placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx">
@@ -441,7 +437,8 @@ RED.nodes.registerType('gpio in',{
 
       var boardRows = ['firmata', 'bean', 'spark', 'imp'];
       var boardToggles = {
-        firmata: 'firmata',
+        "firmata": 'firmata',
+        "playground-io": 'firmata',
         "bean-io": 'bean',
         "particle-io": 'spark',
         "tinker-io": 'spark',
