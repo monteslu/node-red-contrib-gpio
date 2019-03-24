@@ -79,7 +79,7 @@ function init(RED) {
             node.send(msg);
           });
         }
-        else{
+        else {
           try{io.pinMode(node.pin, io.MODES.INPUT);}catch(exp){ console.log(exp); }
             io.digitalRead(node.pin, function(data) {
             var msg = {payload:data, topic:node.pin};
