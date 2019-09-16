@@ -72,6 +72,13 @@ function init(RED) {
             node.send(msg);
           });
         }
+        else if (node.state == "PULLUP") {
+          try{io.pinMode(node.pin, io.MODES.PULLUP);}catch(exp){ console.log(exp); }
+            io.digitalRead(node.pin, function(data) {
+            var msg = {payload:data, topic:node.pin};
+            node.send(msg);
+          });
+        }
         else {
           try{io.pinMode(node.pin, io.MODES.INPUT);}catch(exp){ console.log(exp); }
             io.digitalRead(node.pin, function(data) {
