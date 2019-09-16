@@ -49,6 +49,7 @@ node-red-contrib-gpio supports several johnny-five I/O classes:
 |Circuit Playground(classic)|[playground-io](https://github.com/rwaldron/playground-io)|
 |Electirc Imp|[imp-io](https://github.com/rwaldron/imp-io/)|
 |Particle(Spark) Core|[particle-io](https://github.com/rwaldron/particle-io/)|
+|Odroid C2|[odroid-io](https://github.com/racerxdl/odroid-io/)|
 
 
 Arduino is supported out of the box, but for other devices, you'll need to install their IO plugin.
