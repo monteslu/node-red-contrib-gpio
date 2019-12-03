@@ -1,40 +1,38 @@
-node-red-contrib-gpio
+node-red-contrib-johnny5
 ========================
 
-[![Join the chat at https://gitter.im/monteslu/node-red-contrib-gpio](https://badges.gitter.im/monteslu/node-red-contrib-gpio.svg)](https://gitter.im/monteslu/node-red-contrib-gpio?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+A set of input and output nodes for controlling **General Purpose Input and Outputs (GPIOs)** though the use of [Johnny-Five](https://github.com/rwaldron/johnny-five) [I/O Plugins](https://github.com/rwaldron/johnny-five/wiki/IO-Plugins) as well as running **Johnny-Five scripts**!
 
-A set of input and output nodes for controlling General Purpose Input and Outputs (GPIOs) though the use of [johnny-five](https://github.com/rwaldron/johnny-five) [I/O Plugins](https://github.com/rwaldron/johnny-five/wiki/IO-Plugins) as well as running johnny-five scripts!
+* Support for NodeJS 12 and serialport 8.
+* Johnny-Five 1.3
+
+This is a fork of [monteslu/node-red-contrib-gpio](https://github.com/monteslu/node-red-contrib-gpio)
+
+## Install via Node-RED Palette Manager
+
+Search for *node-red-contrib-johnny5*
 
 ## Install via NPM
 
 From inside your node-red directory:
 ```
-npm install node-red-contrib-gpio
+npm install node-red-contrib-johnny5
 ```
 
 ## Control I/O for Analog, Digital, PWM and Servos
 
 ![input output](in_out.png)
 
-## Also Read and Write to i2c devices
+## Read and Write I2C devices
 ![i2c](i2c.png)
 
-Node configuration
-* 14 is the length of bytes to read (1 byte = 8 bits)
-* i2c bytes is an array of bytes. You can't use inject node directly because data has to be inside an array.
-```
-msg.payload=[0x00]
-return msg;
-```
-* i2c read and i2c write configure i2c connection. I2c and register are decimal values! parseInt(x, 10) function is used to read values.
+## Full Johnny-Five script support!
 
-## Now with full Johnny-five support!
-
-![j5node](j5node.png)
+![scriptnode](scriptnode.png)
 
 ## Supported Hardware
 
-node-red-contrib-gpio supports several johnny-five I/O classes:
+node-red-contrib-johnny5 supports several Johnny-Five I/O classes:
 
 | Device | IO Plugin |
 |----------|-------------|
@@ -59,7 +57,6 @@ For example to install the Raspberry Pi plugin:
 ```
 npm install raspi-io
 ```
-
 
 ## Remote Arduino Support
 
