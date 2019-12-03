@@ -264,14 +264,11 @@ function init(RED) {
   }
 
   function listArduinoPorts(callback) {
-    return serialport.list((err, ports) => {
-      if (err) {
-        return callback(err);
-      }
+    return serialport.list().then(ports => {
       const devices = [];
       for (let i = 0; i < ports.length; i++) {
-        if (/usb|acm|com\d+/i.test(ports[i].comName)) {
-          devices.push(ports[i].comName);
+        if (/usb|acm|com\d+/i.test(ports[i].path)) {
+          devices.push(ports[i].path);
         }
       }
       return callback(null, devices);
