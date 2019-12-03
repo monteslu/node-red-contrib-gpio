@@ -29,24 +29,24 @@ const NodeLed = require('node-led');
 const _ = require('lodash');
 
 function connectingStatus(n) {
-  n.status({ fill: 'red', shape: 'ring', text: 'connecting ... ' });
+  n.status({ fill: 'red', shape: 'ring', text: 'connecting…' });
 }
 
 function networkReadyStatus(n) {
-  n.status({ fill: 'yellow', shape: 'ring', text: 'connecting...' });
+  n.status({ fill: 'yellow', shape: 'ring', text: 'connecting…' });
 }
 
 function networkErrorStatus(n) {
-  n.status({ fill: 'red', shape: 'dot', text: 'disconnected' });
+  n.status({ fill: 'red', shape: 'dot', text: 'disconnected!' });
 }
 
 function ioErrorStatus(n, err) {
-  n.status({ fill: 'red', shape: 'dot', text: 'error' });
+  n.status({ fill: 'red', shape: 'dot', text: 'error!' });
   n.warn(err);
 }
 
 function connectedStatus(n) {
-  n.status({ fill: 'green', shape: 'dot', text: 'connected !!!! ' });
+  n.status({ fill: 'green', shape: 'dot', text: 'connected' });
 }
 
 
