@@ -218,7 +218,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 
 
-<script type="text/x-red" data-template-name="johnny5">
+<script type="text/x-red" data-template-name="script">
     <div class="form-row">
         <label for="node-input-board"><i class="fa fa-tasks"></i> Board</label>
         <input type="text" id="node-input-board">
@@ -238,7 +238,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     <div class="form-tips"><span>See the Info tab for help writing johnny-five functions.</span></div>
 </script>
 
-<script type="text/x-red" data-help-name="johnny5">
+<script type="text/x-red" data-help-name="script">
     <p>A function block where you can write code using the amazing <a target="_new" href="http://johnny-five.io">johnny-five</a> robotics library.</p>
     <p>The function you write is what happens once the specified johnny-five board emits a 'ready' event.</p>
     <p>Your script executes <strong>ONCE</strong> on deployment, <strong>NOT</strong> each time a message comes.</p>
@@ -265,7 +265,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 
 RED.nodes.registerType('gpio in',{
-    category: 'input',
+    category: 'Johnny5',
     defaults: {
       name: {value:""},
       state: {value:"INPUT",required:true},
@@ -273,7 +273,7 @@ RED.nodes.registerType('gpio in',{
       pin: {value:"",required:false},
       board: {type:"nodebot", required:true}
     },
-    color:"#f6de1d",
+    color:"#f3df49",
     inputs:0,
     outputs:1,
     icon: "gpiowhite.png",
@@ -314,7 +314,7 @@ RED.nodes.registerType('gpio in',{
 
 
   RED.nodes.registerType('gpio out',{
-    category: 'output',
+    category: 'Johnny5',
     defaults: {
       name: {value:""},
       state: {value:"OUTPUT",required:true},
@@ -325,7 +325,7 @@ RED.nodes.registerType('gpio in',{
       outputs: {value:0},
       board: {type:"nodebot", required:true}
     },
-    color:"#f6de1d",
+    color:"#f3df49",
     inputs:1,
     outputs:0,
     icon: "gpiowhite.png",
@@ -386,7 +386,7 @@ RED.nodes.registerType('gpio in',{
 
 
   RED.nodes.registerType('node-led',{
-    category: 'output',
+    category: 'Johnny5',
     defaults: {
       name: {value:""},
       mode: {value:"AlphaNum4",required:true},
@@ -394,7 +394,7 @@ RED.nodes.registerType('gpio in',{
       outputs: {value:0},
       board: {type:"nodebot", required:true}
     },
-    color:"#f6de1d",
+    color:"#f3df49",
     inputs:1,
     outputs:0,
     icon: "gpiowhite.png",
@@ -508,7 +508,7 @@ RED.nodes.registerType('gpio in',{
           $("#node-config-lookup-serial-icon").addClass('spinner');
           $("#node-config-lookup-serial").addClass('disabled');
 
-          $.getJSON('gpioserialports',function(data) {
+          $.getJSON('johnny5serialports',function(data) {
               $("#node-config-lookup-serial-icon").addClass('fa-search');
               $("#node-config-lookup-serial-icon").removeClass('spinner');
               $("#node-config-lookup-serial").removeClass('disabled');
@@ -535,9 +535,9 @@ RED.nodes.registerType('gpio in',{
   });
 
 
-    RED.nodes.registerType('johnny5',{
-        color:"#f6de1d",
-        category: 'function',
+    RED.nodes.registerType('script',{
+        color:"#f3df49",
+        category: 'Johnny5',
         defaults: {
             name: {value:""},
             func: {value:""},
@@ -548,7 +548,7 @@ RED.nodes.registerType('gpio in',{
         outputs:1,
         icon: "johnny5white.png",
         label: function() {
-            return this.name || 'johnny5';
+            return this.name || 'script';
         },
         oneditprepare: function() {
             var that = this;

@@ -276,10 +276,10 @@ function init(RED) {
   }
 
 
-  function johnny5Node(n) {
+  function scriptNode(n) {
     RED.nodes.createNode(this, n);
 
-    // console.log('initializing johnny5Node', n);
+    // console.log('initializing scriptNode', n);
     this.nodebot = RED.nodes.getNode(n.board);
     this.func = n.func;
     const node = this;
@@ -290,9 +290,9 @@ function init(RED) {
         connectingStatus(node);
       });
 
-      // console.log('launching johnny5Node', n);
+      // console.log('launching scriptNode', n);
       node.nodebot.on('ioready', function () {
-        // console.log('launching johnny5Node ioready', n);
+        // console.log('launching scriptNode ioready', n);
         connectedStatus(node);
 
         function sendResults(node, msgs) {
@@ -452,11 +452,11 @@ function init(RED) {
     }
   }
 
-  RED.nodes.registerType('johnny5', johnny5Node);
+  RED.nodes.registerType('script', scriptNode);
 
 
   // routes
-  RED.httpAdmin.get('/gpioserialports', RED.auth.needsPermission('arduino.read'), (req, res) => {
+  RED.httpAdmin.get('/johnny5serialports', RED.auth.needsPermission('arduino.read'), (req, res) => {
     listArduinoPorts((err, ports) => {
       res.json(ports);
     });

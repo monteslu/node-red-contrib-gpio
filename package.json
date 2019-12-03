@@ -2,7 +2,7 @@
   "name": "node-red-contrib-johnny5",
   "version": "0.50.0-beta1",
   "description": "A set of node-red nodes for using johnny-five and IO plugins (fork)",
-  "main": "gpio.js",
+  "main": "johnny5.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -45,7 +45,7 @@
   },
   "node-red": {
     "nodes": {
-      "gpio": "gpio.js"
+      "johnny5": "johnny5.js"
     }
   }
 }
