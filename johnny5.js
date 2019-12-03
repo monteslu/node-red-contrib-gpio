@@ -25,7 +25,6 @@ const createIOPluginNode = require('./lib/iopluginNode');
 const five = require('johnny-five');
 const vm = require('vm');
 const util = require('util');
-const NodeLed = require('node-led');
 const _ = require('lodash');
 
 function connectingStatus(n) {
@@ -207,51 +206,6 @@ function init(RED) {
   }
 
   RED.nodes.registerType('gpio out', gpioOutNode);
-
-
-  function nodeLedNode(n) {
-    RED.nodes.createNode(this, n);
-    this.buttonState = -1;
-    this.address = Number(n.address);
-    this.mode = n.mode;
-    this.arduino = n.arduino;
-    this.ioplugin = RED.nodes.getNode(n.board);
-    if (typeof this.ioplugin === 'object') {
-      const node = this;
-      connectingStatus(node);
-
-      node.ioplugin.on('ioready', () => {
-        node.comp = new NodeLed[node.mode](node.ioplugin.io, { address: node.address });
-        connectedStatus(node);
-
-        node.on('input', (msg) => {
-          try {
-            if (node.mode === 'AlphaNum4' || node.mode === 'SevenSegment') {
-              node.comp.writeText(msg.payload);
-            } else {
-              node.comp.drawBitmap(msg.payload);
-            }
-          } catch (inputExp) {
-            node.warn(inputExp);
-          }
-        });
-      });
-      node.ioplugin.on('networkReady', () => {
-        networkReadyStatus(node);
-      });
-      node.ioplugin.on('networkError', () => {
-        networkErrorStatus(node);
-      });
-      node.ioplugin.on('ioError', (err) => {
-        ioErrorStatus(node, err);
-      });
-    } else {
-      this.warn('ioplugin not configured');
-    }
-  }
-
-  RED.nodes.registerType('node-led', nodeLedNode);
-
 
   function handleRoute(req, res, handler) {
     handler(req.query)
