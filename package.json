@@ -16,6 +16,7 @@
     "firmata",
     "node-red",
     "johnny-five",
+    "johnny5",
     "mqtt",
     "raspberry pi",
     "arduino",
