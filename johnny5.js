@@ -20,7 +20,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 'use strict';
 
 const serialport = require('serialport');
-const createNodebotNode = require('./lib/nodebotNode');
+const createIOPluginNode = require('./lib/iopluginNode');
 
 const five = require('johnny-five');
 const vm = require('vm');
@@ -51,20 +51,20 @@ function connectedStatus(n) {
 
 
 function init(RED) {
-  createNodebotNode(RED);
+  createIOPluginNode(RED);
 
   function gpioInNode(n) {
     RED.nodes.createNode(this, n);
     this.buttonState = -1;
     this.pin = n.pin;
     this.state = n.state;
-    this.nodebot = RED.nodes.getNode(n.board);
-    if (typeof this.nodebot === 'object') {
+    this.ioplugin = RED.nodes.getNode(n.board);
+    if (typeof this.ioplugin === 'object') {
       const node = this;
       connectingStatus(node);
 
-      node.nodebot.on('ioready', () => {
-        const { io } = node.nodebot;
+      node.ioplugin.on('ioready', () => {
+        const { io } = node.ioplugin;
 
         connectedStatus(node);
         if (node.state == 'ANALOG') {
@@ -89,17 +89,17 @@ function init(RED) {
           });
         }
       });
-      node.nodebot.on('networkReady', () => {
+      node.ioplugin.on('networkReady', () => {
         networkReadyStatus(node);
       });
-      node.nodebot.on('networkError', () => {
+      node.ioplugin.on('networkError', () => {
         networkErrorStatus(node);
       });
-      node.nodebot.on('ioError', (err) => {
+      node.ioplugin.on('ioError', (err) => {
         ioErrorStatus(node, err);
       });
     } else {
-      this.warn('nodebot not configured');
+      this.warn('ioplugin not configured');
     }
   }
   RED.nodes.registerType('gpio in', gpioInNode);
@@ -110,20 +110,20 @@ function init(RED) {
     this.pin = n.pin;
     this.state = n.state;
     this.arduino = n.arduino;
-    this.nodebot = RED.nodes.getNode(n.board);
+    this.ioplugin = RED.nodes.getNode(n.board);
     this.i2cAddress = parseInt(n.i2cAddress, 10);
     this.i2cRegister = parseInt(n.i2cRegister, 10);
-    if (typeof this.nodebot === 'object') {
+    if (typeof this.ioplugin === 'object') {
       const node = this;
       connectingStatus(node);
 
-      node.nodebot.on('ioready', () => {
+      node.ioplugin.on('ioready', () => {
         connectedStatus(node);
 
         node.on('input', (msg) => {
           try {
             const state = msg.state || node.state;
-            const { io } = node.nodebot;
+            const { io } = node.ioplugin;
             if (state === 'OUTPUT') {
               try { io.pinMode(node.pin, io.MODES[state]); } catch (exp) { console.log(exp); }
               if ((msg.payload == true) || (msg.payload == 1) || (msg.payload.toString().toLowerCase() === 'on')) {
@@ -192,17 +192,17 @@ function init(RED) {
           }
         });
       });
-      node.nodebot.on('networkReady', () => {
+      node.ioplugin.on('networkReady', () => {
         networkReadyStatus(node);
       });
-      node.nodebot.on('networkError', () => {
+      node.ioplugin.on('networkError', () => {
         networkErrorStatus(node);
       });
-      node.nodebot.on('ioError', (err) => {
+      node.ioplugin.on('ioError', (err) => {
         ioErrorStatus(node, err);
       });
     } else {
-      this.warn('nodebot not configured');
+      this.warn('ioplugin not configured');
     }
   }
 
@@ -215,13 +215,13 @@ function init(RED) {
     this.address = Number(n.address);
     this.mode = n.mode;
     this.arduino = n.arduino;
-    this.nodebot = RED.nodes.getNode(n.board);
-    if (typeof this.nodebot === 'object') {
+    this.ioplugin = RED.nodes.getNode(n.board);
+    if (typeof this.ioplugin === 'object') {
       const node = this;
       connectingStatus(node);
 
-      node.nodebot.on('ioready', () => {
-        node.comp = new NodeLed[node.mode](node.nodebot.io, { address: node.address });
+      node.ioplugin.on('ioready', () => {
+        node.comp = new NodeLed[node.mode](node.ioplugin.io, { address: node.address });
         connectedStatus(node);
 
         node.on('input', (msg) => {
@@ -236,17 +236,17 @@ function init(RED) {
           }
         });
       });
-      node.nodebot.on('networkReady', () => {
+      node.ioplugin.on('networkReady', () => {
         networkReadyStatus(node);
       });
-      node.nodebot.on('networkError', () => {
+      node.ioplugin.on('networkError', () => {
         networkErrorStatus(node);
       });
-      node.nodebot.on('ioError', (err) => {
+      node.ioplugin.on('ioError', (err) => {
         ioErrorStatus(node, err);
       });
     } else {
-      this.warn('nodebot not configured');
+      this.warn('ioplugin not configured');
     }
   }
 
@@ -280,18 +280,18 @@ function init(RED) {
     RED.nodes.createNode(this, n);
 
     // console.log('initializing scriptNode', n);
-    this.nodebot = RED.nodes.getNode(n.board);
+    this.ioplugin = RED.nodes.getNode(n.board);
     this.func = n.func;
     const node = this;
 
 
-    if (typeof this.nodebot === 'object') {
+    if (typeof this.ioplugin === 'object') {
       process.nextTick(() => {
         connectingStatus(node);
       });
 
       // console.log('launching scriptNode', n);
-      node.nodebot.on('ioready', function () {
+      node.ioplugin.on('ioready', function () {
         // console.log('launching scriptNode ioready', n);
         connectedStatus(node);
 
@@ -392,8 +392,8 @@ function init(RED) {
           clearTimeout,
           _,
           five,
-          board: node.nodebot.board,
-          boardModule: node.nodebot.boardModule,
+          board: node.ioplugin.board,
+          boardModule: node.ioplugin.boardModule,
           RED,
           require,
 
@@ -438,17 +438,17 @@ function init(RED) {
           this.error(err);
         }
       });
-      node.nodebot.on('networkReady', () => {
+      node.ioplugin.on('networkReady', () => {
         networkReadyStatus(node);
       });
-      node.nodebot.on('networkError', () => {
+      node.ioplugin.on('networkError', () => {
         networkErrorStatus(node);
       });
-      node.nodebot.on('ioError', (err) => {
+      node.ioplugin.on('ioError', (err) => {
         ioErrorStatus(node, err);
       });
     } else {
-      this.warn('nodebot not configured');
+      this.warn('ioplugin not configured');
     }
   }
 

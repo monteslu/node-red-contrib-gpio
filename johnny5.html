@@ -110,9 +110,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   <p>Node-led output node using the excellent <a href="https://github.com/louiemontes/node-led" target="_blank">louiemontes/node-led</a> library for <a href="https://learn.adafruit.com/adafruit-led-backpack/overview" target="_blank">Adafruit LED Backpacks</a>. </p>
 </script>
 
-<script type="text/x-red" data-template-name="nodebot">
+<script type="text/x-red" data-template-name="ioplugin">
   <div class="form-row">
-    <label for="node-config-input-boardType"><i class="fa fa-gears"></i> Nodebot</label>
+    <label for="node-config-input-boardType"><i class="fa fa-gears"></i> IO plugin</label>
     <select type="text" id="node-config-input-boardType" style="width: 200px;">
         <option value="firmata">Arduino/Firmata</option>
         <option value="raspi-io">Raspberry Pi</option>
@@ -271,7 +271,7 @@ RED.nodes.registerType('gpio in',{
       state: {value:"INPUT",required:true},
       samplingInterval: {value:"300",required:false},
       pin: {value:"",required:false},
-      board: {type:"nodebot", required:true}
+      board: {type:"ioplugin", required:true}
     },
     color:"#f3df49",
     inputs:0,
@@ -323,7 +323,7 @@ RED.nodes.registerType('gpio in',{
       i2cAddress: {value:"",required:false},
       i2cRegister: {value:"",required:false},
       outputs: {value:0},
-      board: {type:"nodebot", required:true}
+      board: {type:"ioplugin", required:true}
     },
     color:"#f3df49",
     inputs:1,
@@ -392,7 +392,7 @@ RED.nodes.registerType('gpio in',{
       mode: {value:"AlphaNum4",required:true},
       address: {value:"",required:true},
       outputs: {value:0},
-      board: {type:"nodebot", required:true}
+      board: {type:"ioplugin", required:true}
     },
     color:"#f3df49",
     inputs:1,
@@ -406,7 +406,7 @@ RED.nodes.registerType('gpio in',{
 
 
 
-  RED.nodes.registerType('nodebot',{
+  RED.nodes.registerType('ioplugin',{
     category: 'config',
     defaults: {
       name: {value:"", required:false},
@@ -541,7 +541,7 @@ RED.nodes.registerType('gpio in',{
         defaults: {
             name: {value:""},
             func: {value:""},
-            board: {type:"nodebot", required:true},
+            board: {type:"ioplugin", required:true},
             noerr: {value:0,required:true,validate:function(v){ return ((!v) || (v === 0)) ? true : false; }}
         },
         inputs:1,
