@@ -19,7 +19,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         <select type="text" id="node-input-state" style="width: 150px;">
             <option value="INPUT">Digital pin</option>
             <option value="PULLUP">Digital pin (pullup)</option>
-            <option value="ANALOG">Analogue pin</option>
+            <option value="ANALOG">Analog pin</option>
         </select>
     </div>
     <div class="form-row"  id="node-div-samplingIntervalRow">
@@ -51,7 +51,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         <label for="node-input-state"><i class="fa fa-wrench"></i> Type</label>
         <select type="text" id="node-input-state" style="width: 200px;">
             <option value="OUTPUT">Digital (0/1)</option>
-            <option value="PWM">Analogue (0-255)</option>
+            <option value="PWM">Analog (0-255)</option>
             <option value="SERVO">Servo (0-180)</option>
             <option value="I2C_READ_REQUEST">I2C Read Request</option>
             <option value="I2C_WRITE_REQUEST">I2C Write Request</option>
@@ -270,7 +270,7 @@ RED.nodes.registerType('gpio in',{
       name: {value:""},
       state: {value:"INPUT",required:true},
       samplingInterval: {value:"300",required:false},
-      pin: {value:"",required:false},
+      pin: {value:"",required:true},
       board: {type:"ioplugin", required:true}
     },
     color:"#f3df49",
@@ -318,7 +318,7 @@ RED.nodes.registerType('gpio in',{
     defaults: {
       name: {value:""},
       state: {value:"OUTPUT",required:true},
-      pin: {value:"",required:false},
+      pin: {value:"",required:true},
       i2cDelay: {value:"0",required:false},
       i2cAddress: {value:"",required:false},
       i2cRegister: {value:"",required:false},
