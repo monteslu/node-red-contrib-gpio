@@ -67,8 +67,6 @@ function init(RED) {
 
         connectedStatus(node);
         if (node.state == 'ANALOG') {
-          const samplingInterval = parseInt(n.samplingInterval, 10) || 300;
-          try { io.setSamplingInterval(samplingInterval); } catch (exp) { console.log(exp); }
           try { io.pinMode(node.pin, io.MODES.ANALOG); } catch (exp) { console.log(exp); }
           io.analogRead(node.pin, (data) => {
             const msg = { payload: data, topic: node.pin };

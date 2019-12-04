@@ -22,10 +22,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
             <option value="ANALOG">Analog pin</option>
         </select>
     </div>
-    <div class="form-row"  id="node-div-samplingIntervalRow">
-        <label for="node-input-samplingInterval"><i class="fa fa-circle"></i> Sampling Interval</label>
-        <input type="text" id="node-input-samplingInterval" placeholder="300">
-    </div>
     <div class="form-row"  id="node-div-pinRow">
         <label for="node-input-pin"><i class="fa fa-circle"></i> Pin</label>
         <input type="text" id="node-input-pin" placeholder="2">
@@ -179,6 +175,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
       <input type="text" id="node-config-input-beanId">
     </div>
   </div>
+  <div class="form-row" id="node-div-samplingIntervalRow">
+    <label for="node-config-input-samplingInterval"><i class="fa fa-hourglass"></i> Sampling Interval (ms)</label>
+    <input type="text" id="node-config-input-samplingInterval" placeholder="500">
+  </div>
   <div class="form-row">
       <label for="node-config-input-name"><i class="fa fa-tag"></i> Name</label>
       <input type="text" id="node-config-input-name" placeholder="Name">
@@ -240,7 +240,6 @@ RED.nodes.registerType('gpio in',{
     defaults: {
       name: {value:""},
       state: {value:"INPUT",required:true},
-      samplingInterval: {value:"300",required:false},
       pin: {value:"",required:true},
       board: {type:"ioplugin", required:true}
     },
@@ -252,34 +251,6 @@ RED.nodes.registerType('gpio in',{
       return this.name||"gpio"+this.pin;
     },
     oneditprepare: function() {
-
-      var self = this;
-
-      function showInterval(){
-        $( "#node-div-samplingIntervalRow" ).show();
-      }
-      function hideInterval(){
-        $( "#node-div-samplingIntervalRow" ).hide();
-      }
-
-      if(self.state === 'ANALOG'){
-        showInterval();
-      }
-      else{
-        hideInterval();
-      }
-
-      var intervalInput = $( "#node-input-state" );
-      intervalInput.change(function(){
-        console.log('intervalInput changed', this.value);
-        if(this.value === 'ANALOG'){
-          showInterval();
-        }
-        else{
-          hideInterval();
-        }
-      });
-
     }
   });
 
@@ -376,7 +347,8 @@ RED.nodes.registerType('gpio in',{
       impId: {value:"", required:false},
       uuid: {value: "", required:false},
       token: {value: "", required:false},
-      sendUuid: {value: "", required:false}
+      sendUuid: {value: "", required:false},
+      samplingInterval: {value: "500", required:false},
     },
     label: function() {
       return this.name || this.boardType;
