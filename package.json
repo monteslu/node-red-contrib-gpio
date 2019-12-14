@@ -12,6 +12,7 @@
   },
   "keywords": [
     "gpio",
+    "node-red-contrib-gpio",
     "io",
     "firmata",
     "node-red",
