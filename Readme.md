@@ -58,6 +58,12 @@ For example to install the Raspberry Pi plugin:
 npm install raspi-io
 ```
 
+## How to use
+
+Please see the embedded examples.
+
+![examples_import](examples_import.png)
+
 ## Remote Arduino Support
 
 If you're using Arduino/Firmata, you can connect to a remote device via a raw tcp socket, or an MQTT connection.
