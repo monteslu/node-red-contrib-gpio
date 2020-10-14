@@ -1,0 +1,149 @@
+[
+    {
+        "id": "fa5aabad.e7c028",
+        "type": "tab",
+        "label": "Johnny-Five DEMO",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "3eb7a047.358d3",
+        "type": "comment",
+        "z": "fa5aabad.e7c028",
+        "name": "node-red-contrib-johnny5",
+        "info": "Demo flow for **node-red-contrib-johnny5**\n\nhttps://flows.nodered.org/node/node-red-contrib-johnny5\n\nhttps://github.com/hreichert/node-red-contrib-johnny5\n\n",
+        "x": 450,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "e48926b2.7a36c8",
+        "type": "gpio in",
+        "z": "fa5aabad.e7c028",
+        "name": "GPIO A0",
+        "state": "ANALOG",
+        "pin": "0",
+        "board": "45e03009.9ea36",
+        "x": 100,
+        "y": 140,
+        "wires": [
+            [
+                "88a2c929.617ae8"
+            ]
+        ]
+    },
+    {
+        "id": "1b1cfc18.160444",
+        "type": "gpio out",
+        "z": "fa5aabad.e7c028",
+        "name": "GPIO 13",
+        "state": "OUTPUT",
+        "pin": "13",
+        "i2cDelay": "0",
+        "i2cAddress": "",
+        "i2cRegister": "",
+        "outputs": 0,
+        "board": "45e03009.9ea36",
+        "x": 260,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "5cd37c7e.0fe144",
+        "type": "inject",
+        "z": "fa5aabad.e7c028",
+        "name": "",
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 90,
+        "y": 280,
+        "wires": [
+            [
+                "1b1cfc18.160444"
+            ]
+        ]
+    },
+    {
+        "id": "85b8c6a4.2b3ea8",
+        "type": "inject",
+        "z": "fa5aabad.e7c028",
+        "name": "",
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 90,
+        "y": 320,
+        "wires": [
+            [
+                "1b1cfc18.160444"
+            ]
+        ]
+    },
+    {
+        "id": "88a2c929.617ae8",
+        "type": "debug",
+        "z": "fa5aabad.e7c028",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 270,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "fa7becc4.eef84",
+        "type": "comment",
+        "z": "fa5aabad.e7c028",
+        "name": "Analog Input",
+        "info": "",
+        "x": 110,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "828dd2ae.f8839",
+        "type": "comment",
+        "z": "fa5aabad.e7c028",
+        "name": "Digital Output",
+        "info": "",
+        "x": 110,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "45e03009.9ea36",
+        "type": "ioplugin",
+        "z": "",
+        "name": "",
+        "username": "",
+        "password": "",
+        "boardType": "firmata",
+        "serialportName": "/dev/ttyACM0",
+        "connectionType": "local",
+        "mqttServer": "",
+        "pubTopic": "",
+        "subTopic": "",
+        "tcpHost": "",
+        "tcpPort": "",
+        "sparkId": "",
+        "sparkToken": "",
+        "beanId": "",
+        "impId": "",
+        "uuid": "",
+        "token": "",
+        "sendUuid": "",
+        "samplingInterval": "500"
+    }
+]

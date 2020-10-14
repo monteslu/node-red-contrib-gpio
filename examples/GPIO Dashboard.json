@@ -1,0 +1,513 @@
+[
+    {
+        "id": "fa5aabad.e7c028",
+        "type": "tab",
+        "label": "Johnny-Five DEMO",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "c32d8c9b.4b847",
+        "type": "gpio out",
+        "z": "fa5aabad.e7c028",
+        "name": "",
+        "state": "OUTPUT",
+        "pin": "13",
+        "i2cDelay": "0",
+        "i2cAddress": "",
+        "i2cRegister": "",
+        "outputs": 0,
+        "board": "45e03009.9ea36",
+        "x": 270,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "907de4ae.e67df8",
+        "type": "gpio in",
+        "z": "fa5aabad.e7c028",
+        "name": "",
+        "state": "ANALOG",
+        "pin": "0",
+        "board": "45e03009.9ea36",
+        "x": 90,
+        "y": 460,
+        "wires": [
+            [
+                "515fc14e.7ea8a",
+                "edb6c6e0.bc9298",
+                "9e91cd.da990e3"
+            ]
+        ]
+    },
+    {
+        "id": "515fc14e.7ea8a",
+        "type": "ui_text",
+        "z": "fa5aabad.e7c028",
+        "group": "33dfce96.de2f12",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "A0 IN",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 270,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "548f1656.d7d8c8",
+        "type": "gpio out",
+        "z": "fa5aabad.e7c028",
+        "name": "",
+        "state": "PWM",
+        "pin": "2",
+        "i2cDelay": "0",
+        "i2cAddress": "",
+        "i2cRegister": "",
+        "outputs": 0,
+        "board": "45e03009.9ea36",
+        "x": 270,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "9c82b13f.41e5a",
+        "type": "ui_slider",
+        "z": "fa5aabad.e7c028",
+        "name": "",
+        "label": "PWM2 OUT",
+        "tooltip": "",
+        "group": "33dfce96.de2f12",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "",
+        "min": 0,
+        "max": "255",
+        "step": 1,
+        "x": 110,
+        "y": 660,
+        "wires": [
+            [
+                "548f1656.d7d8c8",
+                "3699c70c.67db08"
+            ]
+        ]
+    },
+    {
+        "id": "ab547c3f.7f44a",
+        "type": "ui_text",
+        "z": "fa5aabad.e7c028",
+        "group": "33dfce96.de2f12",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "PWM2 OUT",
+        "format": "{{msg.payload}} Volt",
+        "layout": "row-spread",
+        "x": 550,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "3699c70c.67db08",
+        "type": "range",
+        "z": "fa5aabad.e7c028",
+        "minin": "0",
+        "maxin": "255",
+        "minout": "0",
+        "maxout": "5",
+        "action": "scale",
+        "round": false,
+        "property": "payload",
+        "name": "",
+        "x": 270,
+        "y": 720,
+        "wires": [
+            [
+                "45c90874.bdeef8"
+            ]
+        ]
+    },
+    {
+        "id": "45c90874.bdeef8",
+        "type": "smooth",
+        "z": "fa5aabad.e7c028",
+        "name": "",
+        "property": "payload",
+        "action": "mean",
+        "count": "1",
+        "round": "2",
+        "mult": "single",
+        "reduce": false,
+        "x": 400,
+        "y": 720,
+        "wires": [
+            [
+                "ab547c3f.7f44a"
+            ]
+        ]
+    },
+    {
+        "id": "edb6c6e0.bc9298",
+        "type": "range",
+        "z": "fa5aabad.e7c028",
+        "minin": "0",
+        "maxin": "1023",
+        "minout": "0",
+        "maxout": "5",
+        "action": "scale",
+        "round": false,
+        "property": "payload",
+        "name": "",
+        "x": 270,
+        "y": 500,
+        "wires": [
+            [
+                "4f315295.41b0bc"
+            ]
+        ]
+    },
+    {
+        "id": "4f315295.41b0bc",
+        "type": "smooth",
+        "z": "fa5aabad.e7c028",
+        "name": "",
+        "property": "payload",
+        "action": "mean",
+        "count": "3",
+        "round": "2",
+        "mult": "single",
+        "reduce": false,
+        "x": 400,
+        "y": 500,
+        "wires": [
+            [
+                "a85ba498.8f6d68"
+            ]
+        ]
+    },
+    {
+        "id": "a85ba498.8f6d68",
+        "type": "ui_gauge",
+        "z": "fa5aabad.e7c028",
+        "name": "",
+        "group": "33dfce96.de2f12",
+        "order": 3,
+        "width": 7,
+        "height": 3,
+        "gtype": "gage",
+        "title": "",
+        "label": "Volt",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "5",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 530,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "8aef2c4d.23935",
+        "type": "gpio in",
+        "z": "fa5aabad.e7c028",
+        "name": "",
+        "state": "PULLUP",
+        "pin": "52",
+        "board": "45e03009.9ea36",
+        "x": 90,
+        "y": 200,
+        "wires": [
+            [
+                "f99e20eb.e0d4c",
+                "eef96fb0.d497d"
+            ]
+        ]
+    },
+    {
+        "id": "1340a89e.8218d7",
+        "type": "ui_text",
+        "z": "fa5aabad.e7c028",
+        "group": "21e1395c.5ba8e6",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "GPIO 52",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 460,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "27a11797.ded428",
+        "type": "ui_switch",
+        "z": "fa5aabad.e7c028",
+        "name": "",
+        "label": "LED",
+        "tooltip": "",
+        "group": "21e1395c.5ba8e6",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 90,
+        "y": 80,
+        "wires": [
+            [
+                "c32d8c9b.4b847"
+            ]
+        ]
+    },
+    {
+        "id": "39866d9a.921bb2",
+        "type": "comment",
+        "z": "fa5aabad.e7c028",
+        "name": "Digital IO / LED",
+        "info": "",
+        "x": 120,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "52d2d0a7.64e8",
+        "type": "comment",
+        "z": "fa5aabad.e7c028",
+        "name": "Digital IO / GPIO 52",
+        "info": "",
+        "x": 130,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "f99e20eb.e0d4c",
+        "type": "debug",
+        "z": "fa5aabad.e7c028",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 290,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "bb92379.1a871c8",
+        "type": "comment",
+        "z": "fa5aabad.e7c028",
+        "name": "Analog IO / A0 IN",
+        "info": "",
+        "x": 120,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "9e91cd.da990e3",
+        "type": "debug",
+        "z": "fa5aabad.e7c028",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 290,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "994216bf.f91e68",
+        "type": "comment",
+        "z": "fa5aabad.e7c028",
+        "name": "Analog IO / PWM2 OUT",
+        "info": "",
+        "x": 150,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "eef96fb0.d497d",
+        "type": "change",
+        "z": "fa5aabad.e7c028",
+        "name": "",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "1",
+                "fromt": "num",
+                "to": "HIGH",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "0",
+                "fromt": "num",
+                "to": "LOW",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 300,
+        "y": 200,
+        "wires": [
+            [
+                "1340a89e.8218d7"
+            ]
+        ]
+    },
+    {
+        "id": "e50b1c93.0a28d",
+        "type": "comment",
+        "z": "fa5aabad.e7c028",
+        "name": "Digital IO / GPIO 53",
+        "info": "",
+        "x": 130,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "87f8a22c.dde7d",
+        "type": "gpio out",
+        "z": "fa5aabad.e7c028",
+        "name": "",
+        "state": "OUTPUT",
+        "pin": "53",
+        "i2cDelay": "0",
+        "i2cAddress": "",
+        "i2cRegister": "",
+        "outputs": 0,
+        "board": "45e03009.9ea36",
+        "x": 270,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "f97bc76b.cae478",
+        "type": "ui_switch",
+        "z": "fa5aabad.e7c028",
+        "name": "",
+        "label": "GPIO 53",
+        "tooltip": "",
+        "group": "21e1395c.5ba8e6",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 100,
+        "y": 340,
+        "wires": [
+            [
+                "87f8a22c.dde7d"
+            ]
+        ]
+    },
+    {
+        "id": "3eb7a047.358d3",
+        "type": "comment",
+        "z": "fa5aabad.e7c028",
+        "name": "node-red-contrib-johnny5",
+        "info": "Demo flow for **node-red-contrib-johnny5**\n\nhttps://flows.nodered.org/node/node-red-contrib-johnny5\n\nhttps://github.com/hreichert/node-red-contrib-johnny5\n\n",
+        "x": 670,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "45e03009.9ea36",
+        "type": "ioplugin",
+        "z": "",
+        "name": "",
+        "username": "",
+        "password": "",
+        "boardType": "firmata",
+        "serialportName": "/dev/ttyACM0",
+        "connectionType": "local",
+        "mqttServer": "",
+        "pubTopic": "",
+        "subTopic": "",
+        "tcpHost": "",
+        "tcpPort": "",
+        "sparkId": "",
+        "sparkToken": "",
+        "beanId": "",
+        "impId": "",
+        "uuid": "",
+        "token": "",
+        "sendUuid": "",
+        "samplingInterval": "500"
+    },
+    {
+        "id": "33dfce96.de2f12",
+        "type": "ui_group",
+        "z": "",
+        "name": "Analog IO",
+        "tab": "e6855103.32002",
+        "order": 2,
+        "disp": true,
+        "width": 7,
+        "collapse": false
+    },
+    {
+        "id": "21e1395c.5ba8e6",
+        "type": "ui_group",
+        "z": "",
+        "name": "Digital IO",
+        "tab": "e6855103.32002",
+        "order": 3,
+        "disp": true,
+        "width": 7,
+        "collapse": false
+    },
+    {
+        "id": "e6855103.32002",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Johnny-Five DEMO",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]

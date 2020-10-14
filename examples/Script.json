@@ -1,0 +1,153 @@
+[
+    {
+        "id": "fa5aabad.e7c028",
+        "type": "tab",
+        "label": "Johnny-Five DEMO",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "3eb7a047.358d3",
+        "type": "comment",
+        "z": "fa5aabad.e7c028",
+        "name": "node-red-contrib-johnny5",
+        "info": "Demo flow for **node-red-contrib-johnny5**\n\nhttps://flows.nodered.org/node/node-red-contrib-johnny5\n\nhttps://github.com/hreichert/node-red-contrib-johnny5\n\n",
+        "x": 450,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "3f3f4459.f6c5bc",
+        "type": "script",
+        "z": "fa5aabad.e7c028",
+        "name": "",
+        "func": "var led = new five.Led({pin: 13, board: board});\n\nnode.on(\"input\", function(msg) {\n    if (msg.payload === \"blink\") {\n        led.stop();\n        led.blink(500);\n    } else if (msg.payload === \"blink_callback\") {\n        led.stop();\n        led.blink(500, function() {\n            node.send({topic: \"blink\", payload: \"led toggled!\"});\n        });\n    } else if (msg.payload === true) {\n        led.stop();\n        led.on();\n    } else if (msg.payload === false) {\n        led.stop();\n        led.off();\n    }\n});\n",
+        "board": "45e03009.9ea36",
+        "noerr": 0,
+        "x": 290,
+        "y": 160,
+        "wires": [
+            [
+                "99ac41fc.36bdd"
+            ]
+        ]
+    },
+    {
+        "id": "1f618dcc.b6bd82",
+        "type": "inject",
+        "z": "fa5aabad.e7c028",
+        "name": "",
+        "topic": "",
+        "payload": "blink",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 90,
+        "y": 100,
+        "wires": [
+            [
+                "3f3f4459.f6c5bc"
+            ]
+        ]
+    },
+    {
+        "id": "e5c5d77e.cdfce8",
+        "type": "inject",
+        "z": "fa5aabad.e7c028",
+        "name": "",
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 90,
+        "y": 160,
+        "wires": [
+            [
+                "3f3f4459.f6c5bc"
+            ]
+        ]
+    },
+    {
+        "id": "b3f12703.9fe948",
+        "type": "inject",
+        "z": "fa5aabad.e7c028",
+        "name": "",
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 90,
+        "y": 220,
+        "wires": [
+            [
+                "3f3f4459.f6c5bc"
+            ]
+        ]
+    },
+    {
+        "id": "99ac41fc.36bdd",
+        "type": "debug",
+        "z": "fa5aabad.e7c028",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 470,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "35d505c2.cf6faa",
+        "type": "inject",
+        "z": "fa5aabad.e7c028",
+        "name": "",
+        "topic": "",
+        "payload": "blink_callback",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 110,
+        "y": 340,
+        "wires": [
+            [
+                "3f3f4459.f6c5bc"
+            ]
+        ]
+    },
+    {
+        "id": "45e03009.9ea36",
+        "type": "ioplugin",
+        "z": "",
+        "name": "",
+        "username": "",
+        "password": "",
+        "boardType": "firmata",
+        "serialportName": "/dev/ttyACM0",
+        "connectionType": "local",
+        "mqttServer": "",
+        "pubTopic": "",
+        "subTopic": "",
+        "tcpHost": "",
+        "tcpPort": "",
+        "sparkId": "",
+        "sparkToken": "",
+        "beanId": "",
+        "impId": "",
+        "uuid": "",
+        "token": "",
+        "sendUuid": "",
+        "samplingInterval": "500"
+    }
+]

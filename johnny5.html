@@ -19,12 +19,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         <select type="text" id="node-input-state" style="width: 150px;">
             <option value="INPUT">Digital pin</option>
             <option value="PULLUP">Digital pin (pullup)</option>
-            <option value="ANALOG">Analogue pin</option>
+            <option value="ANALOG">Analog pin</option>
         </select>
-    </div>
-    <div class="form-row"  id="node-div-samplingIntervalRow">
-        <label for="node-input-samplingInterval"><i class="fa fa-circle"></i> Sampling Interval</label>
-        <input type="text" id="node-input-samplingInterval" placeholder="300">
     </div>
     <div class="form-row"  id="node-div-pinRow">
         <label for="node-input-pin"><i class="fa fa-circle"></i> Pin</label>
@@ -39,7 +35,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 </script>
 
 <script type="text/x-red" data-help-name="gpio in">
-  <p>gpio input node. A node for receiving data from General Purpose Input and Outputs (GPIOs) pins though the use of johnny-five I/O Plugins</p>
+  <p>gpio input node. A node for receiving data from General Purpose Input and Outputs (GPIOs) pins though the use of Johnny-Five I/O Plugins</p>
 </script>
 
 <script type="text/x-red" data-template-name="gpio out">
@@ -51,7 +47,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         <label for="node-input-state"><i class="fa fa-wrench"></i> Type</label>
         <select type="text" id="node-input-state" style="width: 200px;">
             <option value="OUTPUT">Digital (0/1)</option>
-            <option value="PWM">Analogue (0-255)</option>
+            <option value="PWM">Analog (0-255)</option>
             <option value="SERVO">Servo (0-180)</option>
             <option value="I2C_READ_REQUEST">I2C Read Request</option>
             <option value="I2C_WRITE_REQUEST">I2C Write Request</option>
@@ -78,41 +74,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 </script>
 
 <script type="text/x-red" data-help-name="gpio out">
-  <p>gpio output node. A node for sending data to General Purpose Input and Outputs (GPIOs) pins though the use of johnny-five I/O Plugins</p>
+  <p>gpio output node. A node for sending data to General Purpose Input and Outputs (GPIOs) pins though the use of Johnny-Five I/O Plugins</p>
 </script>
 
-
-<script type="text/x-red" data-template-name="node-led">
-    <div class="form-row">
-        <label for="node-input-board"><i class="fa fa-tasks"></i> Board</label>
-        <input type="text" id="node-input-board">
-    </div>
-    <div class="form-row">
-        <label for="node-input-mode"><i class="fa fa-wrench"></i> Type</label>
-        <select type="text" id="node-input-mode" style="width: 200px;">
-            <option value="AlphaNum4">AlphaNum4</option>
-            <option value="SevenSegment">SevenSegment</option>
-            <option value="Matrix8x16">Matrix8x16</option>
-            <option value="Matrix8x8">Matrix8x8</option>
-        </select>
-    </div>
-    <div class="form-row" id="node-div-addressRow">
-        <label for="node-input-address"><i class="fa fa-circle"></i> I2C Address</label>
-        <input type="text" id="node-input-address" placeholder="112">
-    </div>
-    <div class="form-row">
-        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
-        <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-</script>
-
-<script type="text/x-red" data-help-name="node-led">
-  <p>Node-led output node using the excellent <a href="https://github.com/louiemontes/node-led" target="_blank">louiemontes/node-led</a> library for <a href="https://learn.adafruit.com/adafruit-led-backpack/overview" target="_blank">Adafruit LED Backpacks</a>. </p>
-</script>
-
-<script type="text/x-red" data-template-name="nodebot">
+<script type="text/x-red" data-template-name="ioplugin">
   <div class="form-row">
-    <label for="node-config-input-boardType"><i class="fa fa-gears"></i> Nodebot</label>
+    <label for="node-config-input-boardType"><i class="fa fa-gears"></i> IO plugin</label>
     <select type="text" id="node-config-input-boardType" style="width: 200px;">
         <option value="firmata">Arduino/Firmata</option>
         <option value="raspi-io">Raspberry Pi</option>
@@ -208,6 +175,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
       <input type="text" id="node-config-input-beanId">
     </div>
   </div>
+  <div class="form-row" id="node-div-samplingIntervalRow">
+    <label for="node-config-input-samplingInterval"><i class="fa fa-hourglass"></i> Sampling Interval (ms)</label>
+    <input type="text" id="node-config-input-samplingInterval" placeholder="500">
+  </div>
   <div class="form-row">
       <label for="node-config-input-name"><i class="fa fa-tag"></i> Name</label>
       <input type="text" id="node-config-input-name" placeholder="Name">
@@ -218,7 +189,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 
 
-<script type="text/x-red" data-template-name="johnny5">
+<script type="text/x-red" data-template-name="script">
     <div class="form-row">
         <label for="node-input-board"><i class="fa fa-tasks"></i> Board</label>
         <input type="text" id="node-input-board">
@@ -235,16 +206,16 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     <div class="form-row node-text-editor-row">
         <div style="height: 250px;" class="node-text-editor" id="node-input-func-editor" ></div>
     </div>
-    <div class="form-tips"><span>See the Info tab for help writing johnny-five functions.</span></div>
+    <div class="form-tips"><span>See the Info tab for help writing Johnny-Five functions.</span></div>
 </script>
 
-<script type="text/x-red" data-help-name="johnny5">
-    <p>A function block where you can write code using the amazing <a target="_new" href="http://johnny-five.io">johnny-five</a> robotics library.</p>
-    <p>The function you write is what happens once the specified johnny-five board emits a 'ready' event.</p>
+<script type="text/x-red" data-help-name="script">
+    <p>A function block where you can write code using the amazing <a target="_new" href="http://johnny-five.io">Johnny-Five</a> robotics library.</p>
+    <p>The function you write is what happens once the specified Johnny-Five board emits a 'ready' event.</p>
     <p>Your script executes <strong>ONCE</strong> on deployment, <strong>NOT</strong> each time a message comes.</p>
 
-    <strong>Using johnny-five components</strong>
-    <p>The "board" and "five" variables are avaiable for use when creating johnny-five component instances such as:
+    <strong>Using Johnny-Five components</strong>
+    <p>The "board" and "five" variables are avaiable for use when creating Johnny-Five component instances such as:
       <p><code>var led = new five.Led({pin: 13, board: board});</code></p>
     </p>
 
@@ -265,15 +236,14 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 
 RED.nodes.registerType('gpio in',{
-    category: 'input',
+    category: 'Johnny5',
     defaults: {
       name: {value:""},
       state: {value:"INPUT",required:true},
-      samplingInterval: {value:"300",required:false},
-      pin: {value:"",required:false},
-      board: {type:"nodebot", required:true}
+      pin: {value:"",required:true},
+      board: {type:"ioplugin", required:true}
     },
-    color:"#f6de1d",
+    color:"#f3df49",
     inputs:0,
     outputs:1,
     icon: "gpiowhite.png",
@@ -281,51 +251,23 @@ RED.nodes.registerType('gpio in',{
       return this.name||"gpio"+this.pin;
     },
     oneditprepare: function() {
-
-      var self = this;
-
-      function showInterval(){
-        $( "#node-div-samplingIntervalRow" ).show();
-      }
-      function hideInterval(){
-        $( "#node-div-samplingIntervalRow" ).hide();
-      }
-
-      if(self.state === 'ANALOG'){
-        showInterval();
-      }
-      else{
-        hideInterval();
-      }
-
-      var intervalInput = $( "#node-input-state" );
-      intervalInput.change(function(){
-        console.log('intervalInput changed', this.value);
-        if(this.value === 'ANALOG'){
-          showInterval();
-        }
-        else{
-          hideInterval();
-        }
-      });
-
     }
   });
 
 
   RED.nodes.registerType('gpio out',{
-    category: 'output',
+    category: 'Johnny5',
     defaults: {
       name: {value:""},
       state: {value:"OUTPUT",required:true},
-      pin: {value:"",required:false},
+      pin: {value:"",required:true},
       i2cDelay: {value:"0",required:false},
       i2cAddress: {value:"",required:false},
       i2cRegister: {value:"",required:false},
       outputs: {value:0},
-      board: {type:"nodebot", required:true}
+      board: {type:"ioplugin", required:true}
     },
-    color:"#f6de1d",
+    color:"#f3df49",
     inputs:1,
     outputs:0,
     icon: "gpiowhite.png",
@@ -384,29 +326,7 @@ RED.nodes.registerType('gpio in',{
     }
   });
 
-
-  RED.nodes.registerType('node-led',{
-    category: 'output',
-    defaults: {
-      name: {value:""},
-      mode: {value:"AlphaNum4",required:true},
-      address: {value:"",required:true},
-      outputs: {value:0},
-      board: {type:"nodebot", required:true}
-    },
-    color:"#f6de1d",
-    inputs:1,
-    outputs:0,
-    icon: "gpiowhite.png",
-    align: "right",
-    label: function() {
-      return this.name||"node-led "+(this.address || '');
-    }
-  });
-
-
-
-  RED.nodes.registerType('nodebot',{
+  RED.nodes.registerType('ioplugin',{
     category: 'config',
     defaults: {
       name: {value:"", required:false},
@@ -427,7 +347,8 @@ RED.nodes.registerType('gpio in',{
       impId: {value:"", required:false},
       uuid: {value: "", required:false},
       token: {value: "", required:false},
-      sendUuid: {value: "", required:false}
+      sendUuid: {value: "", required:false},
+      samplingInterval: {value: "500", required:false},
     },
     label: function() {
       return this.name || this.boardType;
@@ -508,7 +429,7 @@ RED.nodes.registerType('gpio in',{
           $("#node-config-lookup-serial-icon").addClass('spinner');
           $("#node-config-lookup-serial").addClass('disabled');
 
-          $.getJSON('gpioserialports',function(data) {
+          $.getJSON('johnny5serialports',function(data) {
               $("#node-config-lookup-serial-icon").addClass('fa-search');
               $("#node-config-lookup-serial-icon").removeClass('spinner');
               $("#node-config-lookup-serial").removeClass('disabled');
@@ -535,20 +456,20 @@ RED.nodes.registerType('gpio in',{
   });
 
 
-    RED.nodes.registerType('johnny5',{
-        color:"#f6de1d",
-        category: 'function',
+    RED.nodes.registerType('script',{
+        color:"#f3df49",
+        category: 'Johnny5',
         defaults: {
             name: {value:""},
             func: {value:""},
-            board: {type:"nodebot", required:true},
+            board: {type:"ioplugin", required:true},
             noerr: {value:0,required:true,validate:function(v){ return ((!v) || (v === 0)) ? true : false; }}
         },
         inputs:1,
         outputs:1,
         icon: "johnny5white.png",
         label: function() {
-            return this.name || 'johnny5';
+            return this.name || 'script';
         },
         oneditprepare: function() {
             var that = this;
