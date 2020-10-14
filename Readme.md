@@ -1,4 +1,4 @@
-node-red-contrib-johnny5
+node-red-contrib-gpio
 ========================
 
 A set of input and output nodes for controlling **General Purpose Input and Outputs (GPIOs)** though the use of [Johnny-Five](https://github.com/rwaldron/johnny-five) [I/O Plugins](https://github.com/rwaldron/johnny-five/wiki/IO-Plugins) as well as running **Johnny-Five scripts**!
@@ -6,17 +6,16 @@ A set of input and output nodes for controlling **General Purpose Input and Outp
 * Support for NodeJS 12 and serialport 8.
 * Johnny-Five 1.3
 
-This is a fork of [monteslu/node-red-contrib-gpio](https://github.com/monteslu/node-red-contrib-gpio)
 
 ## Install via Node-RED Palette Manager
 
-Search for *node-red-contrib-johnny5*
+Search for *node-red-contrib-gpio*
 
 ## Install via NPM
 
 From inside your node-red directory:
 ```
-npm install node-red-contrib-johnny5
+npm install node-red-contrib-gpio
 ```
 
 ## Control I/O for Analog, Digital, PWM and Servos
