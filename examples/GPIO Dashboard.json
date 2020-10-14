@@ -449,8 +449,8 @@
         "id": "3eb7a047.358d3",
         "type": "comment",
         "z": "fa5aabad.e7c028",
-        "name": "node-red-contrib-johnny5",
-        "info": "Demo flow for **node-red-contrib-johnny5**\n\nhttps://flows.nodered.org/node/node-red-contrib-johnny5\n\nhttps://github.com/hreichert/node-red-contrib-johnny5\n\n",
+        "name": "node-red-contrib-gpio",
+        "info": "Demo flow for **node-red-contrib-gpio**\n\nhttps://flows.nodered.org/node/node-red-contrib-gpio\n\nhttps://github.com/monteslu/node-red-contrib-gpio\n\n",
         "x": 670,
         "y": 60,
         "wires": []

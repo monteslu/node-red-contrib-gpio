@@ -4,4 +4,4 @@
 * beispiele für script node, mit kommunikation (msg in/out)
 
 Deployment test:
-ssh pi@raspberrypi "mv /home/pi/node-red-contrib-johnny5/node_modules/ /tmp/ && rm -rf /home/pi/node-red-contrib-johnny5" && scp -r node-red-contrib-johnny5/ pi@raspberrypi:/home/pi/ && ssh pi@raspberrypi "mv /tmp/node_modules/ /home/pi/node-red-contrib-johnny5/ && cd /home/pi/.node-red/ && npm install /home/pi/node-red-contrib-johnny5/ && node-red-stop && node-red-start"
+ssh pi@raspberrypi "mv /home/pi/node-red-contrib-gpio/node_modules/ /tmp/ && rm -rf /home/pi/node-red-contrib-gpio" && scp -r node-red-contrib-gpio/ pi@raspberrypi:/home/pi/ && ssh pi@raspberrypi "mv /tmp/node_modules/ /home/pi/node-red-contrib-gpio/ && cd /home/pi/.node-red/ && npm install /home/pi/node-red-contrib-gpio/ && node-red-stop && node-red-start"

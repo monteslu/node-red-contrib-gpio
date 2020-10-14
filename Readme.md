@@ -31,7 +31,7 @@ npm install node-red-contrib-gpio
 
 ## Supported Hardware
 
-node-red-contrib-johnny5 supports several Johnny-Five I/O classes:
+node-red-contrib-gpio supports several Johnny-Five I/O classes:
 
 | Device | IO Plugin |
 |----------|-------------|
